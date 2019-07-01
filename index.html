@@ -5,6 +5,10 @@
 		<title>Node.js在线聊天室</title>
 	</head>
 	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var socket = io.connect("127.0.0.1:3000");//连接socket服务
+		</script>
 		<h1>聊天室客户端</h1>
 		<textarea id="text" rows="" cols=""></textarea>
 		<button type="button">发送消息</button>
