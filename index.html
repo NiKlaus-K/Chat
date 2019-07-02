@@ -8,9 +8,31 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var socket = io.connect("127.0.0.1:3000");//连接socket服务
+			var myMes = "";
+			window.onload = function(){
+				document.getElementById("btn").onclick = function(){
+					var mes = document.getElementById("text").value;//获取文本框的消息
+					if(!mes){
+						return;
+					};
+					myMes = mes;
+					document.getElementById("text").value = "";
+					socket.send(mes);//发送消息到socket服务端
+				};
+			};
+			//当服务端广播消息的时候   会触发一个消息事件  并且广播的消息会存在于回调中
+			socket.on("message",function(mes){
+				// console.log(mes);
+				var p = document.createElement("p");
+				p.innerText = mes;
+				if(mes === myMes){
+					p.style.cssText = "color:red;font-weight:bold;";
+				}
+				document.body.appendChild(p);
+			});
 		</script>
 		<h1>聊天室客户端</h1>
 		<textarea id="text" rows="" cols=""></textarea>
-		<button type="button">发送消息</button>
+		<button type="button" id="btn">发送消息</button>
 	</body>
 </html>

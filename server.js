@@ -29,6 +29,8 @@ io.on("connection",function(socket){
 	console.log("用户请求进入聊天室");
 	//坚挺到socket当中的消息发送事件
 	socket.on("message",function(mes){
+		
+		console.log(mes);
 		//如果没有注明发给谁 那么就是广播
 		io.emit("message",mes);//发送消息事件
 	});
