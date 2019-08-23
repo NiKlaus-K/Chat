@@ -16,7 +16,7 @@ var ws = require("socket.io");
 var server = http.createServer(function(req,res){
 	//有两个参数    
 	//req ：request   请求
-	//res ：response 相应
+	//res ：response  响应
 	var html = fs.readFileSync("./index.html");
 	
 	res.end(html);//相应结束，发送字符
